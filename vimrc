@@ -57,8 +57,8 @@ Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
-Bundle 'gregsexton/MatchTag'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'gregsexton/MatchTag'
+"Bundle 'Shougo/neocomplcache'
 " Snippets
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/snipmate-snippets'
@@ -101,6 +101,8 @@ Bundle 'mathml.vim'
 " Automatically detect file types. (must turn on after Vundle)
 filetype plugin indent on
 
+set foldmethod=manual
+
 " Set leader to ,
 " Note: This line MUST come before any <leader> mappings
 let mapleader=","
@@ -122,12 +124,13 @@ if has('win32') || has('win64')
 
   " Windows has a nasty habit of launching gVim in the wrong working directory
   cd ~
-elseif has('gui_macvim')
+else
+  "if has('gui_macvim')
   " MacVim
 
   " Custom Menlo font for Powerline
   " From: https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts
-  set guifont=Menlo\ for\ Powerline:h12
+  "set guifont=Menlo\ for\ Powerline:h12
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -135,7 +138,7 @@ elseif has('gui_macvim')
   endif
 
   " Use option (alt) as meta key.
-  set macmeta
+  "set macmeta
 endif
 
 " ----------------------------------------
@@ -453,8 +456,8 @@ let g:indent_guides_enable_on_vim_startup=1
 " ---------------
 " Session
 " ---------------
-let g:session_autosave=0
-let g:session_autoload=0
+let g:session_autosave=1
+let g:session_autoload=1
 nnoremap <leader>os :OpenSession<CR>
 
 " ---------------
@@ -558,13 +561,16 @@ nnoremap <leader>u :CtrlPCurFile<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 
+set wildignore+=*.bmp,*.gif,*.jpg,*.jpeg,*.JPG,*.png
+
 " ---------------
 " Powerline
 " ---------------
 " Keep ^B from showing on Windows in Powerline
 if has('win32') || has('win64')
   let g:Powerline_symbols = 'compatible'
-elseif has('gui_macvim')
+else
+  "if has('gui_macvim')
   let g:Powerline_symbols = 'fancy'
 endif
 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
@@ -757,3 +763,4 @@ if has("autocmd")
   " Fix trailing whitespace in my most used programming langauges
   autocmd BufWritePre *.py,*.coffee,*.rb silent! :StripTrailingWhiteSpace
 endif
+

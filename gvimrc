@@ -13,3 +13,5 @@ if has('gui_macvim')
   " D-l
   macmenu &Tools.List\ Errors key=<nop>
 endif
+
+"set cursorline
