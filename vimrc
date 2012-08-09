@@ -98,6 +98,8 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tomtom/tlib_vim'
 Bundle 'mathml.vim'
 
+Bundle "vim-python"
+
 " Automatically detect file types. (must turn on after Vundle)
 filetype plugin indent on
 
@@ -763,4 +765,9 @@ if has("autocmd")
   " Fix trailing whitespace in my most used programming langauges
   autocmd BufWritePre *.py,*.coffee,*.rb silent! :StripTrailingWhiteSpace
 endif
+
+au BufNewFile,BufRead *.py set filetype=python
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
 
